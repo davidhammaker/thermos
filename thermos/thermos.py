@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -9,8 +9,11 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/add')
+@app.route('/add', methods=['GET', 'POST'])
 def add():
+    if request.method == "POST":
+        url = request.form['url']
+        return redirect(url_for('index'))
     return render_template('add.html')
 
 
