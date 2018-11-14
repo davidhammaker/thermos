@@ -19,5 +19,17 @@ I am using the `venv` module to create a virtual environment (see the `venv` [do
 
 Inside your active virtual environment, install _Flask_ by running `$ pip install flask`.
 
+Additionally, install _Flask WTF_ by running `$ pip install flask-wtf`.
+
 ## Usage
 The project has not been deployed to an online server. To experimentally test the web-app, I recommend that you first _clone_ the repository, then `cd` into the cloned repository. From there, run `$ python thermos/thermos.py` (or `$ python3 thermos/thermos.py` if Python 3 is not the default version of Python on your machine). This deploys the web-app to the local host on port 7700. To access the app, go to `http://localhost:7700/` in your web browser.
+
+## My Code VS Instructor Code
+
+In `forms.py`, line 3, the instructor wanted me to use `from flask.ext.wtf.html5 import URLField`. My code editor gave me an error, saying `flask.ext` does not exist, and there is certainly no `URLField` inside it. After some internet searching, I think I have found the solution. I am using `from wtforms.fields.html5 import URLField` instead. (This module will be used to validate URLs.)
+
+Additionally, `flask_wtf.Form` is deprecated. I am using `flask_wtf.FlaskForm` instead, which is the replacement for `flask_wtf.Form`. For simplicity in this example, I still import the module as `Form`: `from flask_wtf import FlaskForm as Form`.
+
+## Notes:
+
+My code editor gives me errors in `thermos.py` in the line that includes, `from forms import BookmarkForm`. The errors state, "Unresolved reference 'forms'..." and "Unresolved reference 'BookmarkForm'..." Regardless of this error, the code runs fine. (I am using _PyCharm_ as my code editor. I don't know whether this error appears on other code editors.)
