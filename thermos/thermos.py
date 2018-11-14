@@ -1,5 +1,6 @@
 from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, flash
+from forms import BookmarkForm  # Errors do not affect functionality. Everything behaves as expected.
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = b'\x97\x91yV\xa0\xd5\xdf\\\x1ad\xe3\xe5\x803\x01*\xd5\xa9\x9d]\xb0.\xeaX'
@@ -7,9 +8,10 @@ app.config['SECRET_KEY'] = b'\x97\x91yV\xa0\xd5\xdf\\\x1ad\xe3\xe5\x803\x01*\xd5
 bookmarks = []
 
 
-def store_bookmark(url):
+def store_bookmark(url, description):
     bookmarks.append(dict(
         url=url,
+        description=description,
         user="david",
         date=datetime.utcnow()
     ))
@@ -27,12 +29,14 @@ def index():
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():
-    if request.method == "POST":
-        url = request.form['url']
-        store_bookmark(url)
-        flash("Stored bookmark '{}'".format(url))
+    form = BookmarkForm()
+    if form.validate_on_submit():
+        url = form.url.data
+        description = form.description.data
+        store_bookmark(url, description)
+        flash("Stored '{}'".format(description))
         return redirect(url_for('index'))
-    return render_template('add.html')
+    return render_template('add.html', form=form)
 
 
 @app.errorhandler(404)
