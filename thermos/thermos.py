@@ -4,7 +4,7 @@ from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 
-from forms import BookmarkForm  # Errors do not affect functionality. Everything behaves as expected.
+from thermos.forms import BookmarkForm
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
