@@ -11,6 +11,10 @@ class Bookmark(db.Model):
     date = db.Column(db.DateTime, default=datetime.utcnow)
     description = db.Column(db.String(300))
 
+    @staticmethod
+    def newest(num):
+        return Bookmark.query.order_by(desc(Bookmark.date)).limit(num)
+
     def __repr__(self):
         return "<Bookmark '{}': '{}'>".format(self.description, self.url)
 

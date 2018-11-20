@@ -15,26 +15,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'th
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-bookmarks = []
-
-
-def store_bookmark(url, description):
-    bookmarks.append(dict(
-        url=url,
-        description=description,
-        user="david",
-        date=datetime.utcnow()
-    ))
-
-
-def new_bookmarks(num):
-    return sorted(bookmarks, key=lambda bm: bm['date'], reverse=True)[:num]
-
 
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html', new_bookmarks=new_bookmarks(5))
+    return render_template('index.html', new_bookmarks=models.Bookmark.newest(5))
 
 
 @app.route('/add', methods=['GET', 'POST'])
@@ -43,7 +28,9 @@ def add():
     if form.validate_on_submit():
         url = form.url.data
         description = form.description.data
-        store_bookmark(url, description)
+        b = models.Bookmark(url=url, description=description)
+        db.session.add(b)
+        db.session.commit()
         flash("Stored '{}'".format(description))
         return redirect(url_for('index'))
     return render_template('add.html', form=form)
