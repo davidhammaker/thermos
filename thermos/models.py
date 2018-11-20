@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from thermos import db
+from thermos.thermos import db
 
 
 class Bookmark(db.Model):
