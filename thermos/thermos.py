@@ -4,7 +4,8 @@ from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 
-from thermos.forms import BookmarkForm
+from forms import BookmarkForm
+import models as models
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
