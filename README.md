@@ -1,7 +1,10 @@
+**11/27/2018 | This project has been discontinued.**
+_I am unable to follow the tutorial because it is out-of-date._
+
 # _Thermos_ | Flask Practice Project
 This project follows the [PluralSight](https://www.pluralsight.com/) course, [_Introduction to the Flask Microframework_](https://app.pluralsight.com/library/courses/flask-micro-framework-introduction/table-of-contents). The project will use [Flask](http://flask.pocoo.org/) to create a "bookmark sharing" web-app.
 
-**As of 11/26/2018, this entire code is non-functional. I am following the instructor examples in hopes that I will eventually be able to make the code work in Python 3. One problem is that** `manage.py` **does not behave for me the way it behaves for the instructor, so I am unable to use it to update the database (which is now outdated and unusable). I intend to try correcting the problems in the future when I am more skilled in working with packages in Python 3. In the meantime, I have tagged the last known working version of the code as "Semi-working" in the repository. Subsequent commits, particularly those which include** `models.py` **will only result in an error.**
+_As of 11/26/2018, this entire code is non-functional. I am following the instructor examples in hopes that I will eventually be able to make the code work in Python 3. One problem is that_ `manage.py` _does not behave for me the way it behaves for the instructor, so I am unable to use it to update the database (which is now outdated and unusable). I intend to try correcting the problems in the future when I am more skilled in working with packages in Python 3. In the meantime, I have tagged the last known working version of the code as "Semi-working" in the repository. Subsequent commits, particularly those which include_ `models.py` _will only result in an error._
 
 ## Overview
 This project is currently a work-in-progress. I will be updating files (and the README) continually as I make my way through the course.
